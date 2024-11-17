@@ -1,0 +1,69 @@
+;
+; bulletCTF Binary Challenge
+;
+CHALL    START
+         OUT   INFLAGM,INFLAGML
+         IN    FLAG,FLAGL
+;
+         LD    GR1,FLAGL
+         XOR   GR1,CHECKL
+         JNZ   WRONG
+;
+         LD    GR1,=0
+LOOP     LD    GR0,FLAG,GR1
+         XOR   GR0,XORN
+         LD    GR2,CHECK,GR1
+         XOR   GR0,GR2
+         JNZ   WRONG
+         LAD   GR1,1,GR1
+         CPA   GR1,FLAGL
+         JMI   LOOP
+         OUT   CORECTM,CORECTML
+         RET
+WRONG    OUT   WRONGM,WRONGML
+         RET
+;
+INFLAGM  DC    'Input your FLAG: '
+INFLAGML DC    17
+FLAG     DS    256
+FLAGL    DS    1
+CORECTM  DC    'Correct FLAG.'
+CORECTML DC    13
+WRONGM   DC    'Wrong FLAG.'
+WRONGML  DC    11
+CHECK    DC    214
+         DC    193
+         DC    216
+         DC    216
+         DC    209
+         DC    192
+         DC    207
+         DC    247
+         DC    219
+         DC    217
+         DC    196
+         DC    193
+         DC    192
+         DC    209
+         DC    198
+         DC    249
+         DC    213
+         DC    215
+         DC    220
+         DC    221
+         DC    218
+         DC    209
+         DC    235
+         DC    216
+         DC    213
+         DC    218
+         DC    211
+         DC    193
+         DC    213
+         DC    211
+         DC    209
+         DC    199
+         DC    201
+CHECKL   DC    33
+XORN     DC    #b4
+         END
